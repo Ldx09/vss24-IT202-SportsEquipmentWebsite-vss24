@@ -1,0 +1,17 @@
+# October 18 2024
+# IT202001
+#Sports Equipment Website
+#vss24@njit.edu
+
+
+http://localhost:3050/addsportsequipmentcategory.test.php?categoryID=4&categoryCode=DM&categoryName=Dumbells&categoryShelf=Aisle%202
+
+http://localhost:3050/listsportsequipmentcategories.test.php
+
+http://localhost:3050/changesportsequipmentcategory.test.php?categoryID=5&categoryCode=BK&categoryName=Bicycles&categoryShelf=Aisle%205
+
+http://localhost:3050/listsportsequipmentcategories.test.php
+
+http://localhost:3050/removesportsequipmentcategory.test.php?categoryID=5
+
+http://localhost:3050/listsportsequipmentcategories.test.php
