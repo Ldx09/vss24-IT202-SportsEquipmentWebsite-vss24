@@ -1,0 +1,149 @@
+body {
+   font-family: Geneva, Tahoma, sans-serif;
+   font-size: 80%;
+   color: #333333;
+   margin: 0;
+   padding: 0;
+   overflow-x: hidden;
+   background-color: #f9f9f9;
+}
+
+h1 {
+   font-family: Verdana, Arial, sans-serif;
+   font-size: 140%;
+   color: #334d55;
+   margin: 10px 0;
+   padding: 0;
+   text-align: center;
+}
+
+h2, h3, h4 {
+   font-family: Geneva, Tahoma, sans-serif;
+   color: #334d55;
+   margin: 5px 0;
+   padding: 0;
+}
+
+h2 {
+   font-size: 130%;
+}
+
+h3 {
+   font-size: 120%;
+}
+
+h4 {
+   font-size: 110%;
+}
+
+footer {
+   font-family: Geneva, Tahoma, sans-serif;
+   clear: both;
+   text-align: center;
+   background-color: #f3f6f8;
+   padding: 10px;
+   border-top: 1px solid #E2EAEF;
+   width: 100%;
+}
+
+main {
+   padding: 10px;
+   border-top: 1px solid #E2EAEF;
+   float: left;
+   width: 75%;
+   min-height: 100vh;
+}
+
+main table {
+   padding: 5px;
+   border-collapse: collapse;
+}
+
+main td {
+   padding: 5px;
+}
+
+header {
+   padding: 10px;
+   border-bottom: 1px solid #E2EAEF;
+   background-color: #334d55;
+   height: 60px;
+   width: 100%;
+   text-align: center;
+}
+
+header img.logo {
+   height: 50px;
+   vertical-align: middle;
+}
+
+nav {
+   padding: 10px;
+   border-right: 1px solid #E2EAEF;
+   background-color: #f8eddc;
+   width: 20%;
+   height: 100%;
+}
+
+nav a {
+   color: #006c8c;
+   text-decoration: none;
+   display: flex;
+   align-items: center;
+   padding: 10px 5px;
+   font-weight: bold;
+   font-size: 95%;
+}
+
+nav a img {
+   height: 20px;
+   width: 20px;
+   margin-right: 8px;
+}
+
+a {
+   color: #006c8c;
+   text-decoration: none;
+}
+
+a:visited {
+   color: #003049;
+}
+
+a:hover {
+   color: #0088bb;
+   text-decoration: underline;
+}
+
+input {
+   border: 1px solid #ccc;
+   padding: 5px;
+   font-size: 90%;
+}
+
+input[type=submit] {
+   font-family: Verdana, Arial, sans-serif;
+   cursor: pointer;
+   background-color: #006c8c;
+   color: white;
+   padding: 5px 10px;
+   border: none;
+   transition: background-color 0.3s;
+}
+
+input[type=submit]:hover {
+   background-color: #0088bb;
+}
+
+input:required:invalid {
+   border: 1px solid red;
+}
+
+input:required:valid {
+   border: 1px solid limegreen;
+}
+
+input:focus {
+   background-color: #e6f7fa;
+   outline: none;
+}

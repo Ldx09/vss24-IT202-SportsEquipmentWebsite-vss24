@@ -50,32 +50,32 @@ class Item
    }
 
    function saveItem() {
-    $db = getDB();
-    $query = "INSERT INTO SportsEquipmentProducts 
-        (SportsProductsCode, SportsProductsName, SportsDescription, SportsProductsColor, SportsCategoryID, SportsWholesalePrice, SportsListPrice) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $db->prepare($query);
-    if (!$stmt) {
-        echo "<h2>Database preparation error: " . $db->error . "</h2>\n";
-        return false;
-    }
-    $stmt->bind_param("sssidds", 
-        $this->itemCode, 
-        $this->itemName, 
-        $this->description, 
-        $this->color, 
-        $this->categoryID, 
-        $this->wholesalePrice, 
-        $this->listPrice
-    );
-    $result = $stmt->execute();
-    if (!$result) {
-        echo "<h2>Database execution error: " . $stmt->error . "</h2>\n";
-        return false;
-    }
-    $db->close();
-    return $result;
-}
+       $db = getDB();
+       $query = "INSERT INTO SportsEquipmentProducts 
+           (SportsProductsCode, SportsProductsName, SportsDescription, SportsProductsColor, SportsCategoryID, SportsWholesalePrice, SportsListPrice) 
+           VALUES (?, ?, ?, ?, ?, ?, ?)";
+       $stmt = $db->prepare($query);
+       if (!$stmt) {
+           echo "<h2>Database preparation error: " . $db->error . "</h2>\n";
+           return false;
+       }
+       $stmt->bind_param("sssidds", 
+           $this->itemCode, 
+           $this->itemName, 
+           $this->description, 
+           $this->color, 
+           $this->categoryID, 
+           $this->wholesalePrice, 
+           $this->listPrice
+       );
+       $result = $stmt->execute();
+       if (!$result) {
+           echo "<h2>Database execution error: " . $stmt->error . "</h2>\n";
+           return false;
+       }
+       $db->close();
+       return $result;
+   }
 
    static function getItems()
    {
@@ -135,35 +135,43 @@ class Item
        }
    }
 
-   function updateItem()
-   {
-       $db = getDB();
-       $query = "UPDATE SportsEquipmentProducts SET SportsProductsCode = ?, SportsProductsName = ?, SportsDescription = ?, SportsProductsColor = ?, SportsCategoryID = ?, SportsWholesalePrice = ?, SportsListPrice = ? WHERE SportsProductsID = ?";
-       $stmt = $db->prepare($query);
-       $stmt->bind_param(
-           "sssiddsi",
-           $this->itemCode,
-           $this->itemName,
-           $this->description,
-           $this->color,
-           $this->categoryID,
-           $this->wholesalePrice,
-           $this->listPrice,
-           $this->itemID
-       );
-       $result = $stmt->execute();
-       $db->close();
-       return $result;
-   }
+   function updateItem() {
+    $db = getDB();
 
-   function removeItem()
-   {
-       $db = getDB();
-       $query = "DELETE FROM SportsEquipmentProducts WHERE SportsProductsID = ?";
-       $stmt = $db->prepare($query);
-       $stmt->bind_param("i", $this->itemID);
-       $result = $stmt->execute();
-       $db->close();
-       return $result;
-   }
+    $query = "UPDATE SportsEquipmentProducts 
+              SET SportsProductsCode = ?, SportsProductsName = ?, SportsDescription = ?, 
+                  SportsProductsColor = ?, SportsCategoryID = ?, SportsWholesalePrice = ?, 
+                  SportsListPrice = ?
+              WHERE SportsProductsID = ?";
+    
+    $stmt = $db->prepare($query);
+
+    if (!$stmt) {
+        error_log("Prepare failed: (" . $db->errno . ") " . $db->error);
+        return false;
+    }
+
+    $stmt->bind_param(
+        "sssiddsi",
+        $this->itemCode,
+        $this->itemName,
+        $this->description,
+        $this->color,
+        $this->categoryID,
+        $this->wholesalePrice,
+        $this->listPrice,
+        $this->itemID
+    );
+
+    $result = $stmt->execute();
+
+    if (!$result) {
+        error_log("Error executing update query: (" . $stmt->errno . ") " . $stmt->error);
+    }
+
+    $stmt->close();
+    $db->close();
+
+    return $result;
+}
 }

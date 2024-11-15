@@ -1,7 +1,8 @@
-# October 10 2024
+# October 18 2024
 # IT202001
 #Sports Equipment Website
 #vss24@njit.edu
+
 
 <?php
 session_start();
@@ -11,11 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Prepare SQL statement
-    $stmt = $db->prepare("SELECT * FROM SportsEquipmentManager WHERE emailAddress = :email");
-    $stmt->bindParam(':email', $email);
+    // Use MySQLi to prepare the statement
+    $db = getDB();  // Call the getDB() function from database.php
+    $stmt = $db->prepare("SELECT * FROM SportsEquipmentManager WHERE emailAddress = ?");
+    $stmt->bind_param("s", $email);  // 's' specifies the type as a string
     $stmt->execute();
-    $manager = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->get_result();
+    $manager = $result->fetch_assoc();  // MySQLi equivalent of PDO::FETCH_ASSOC
 
     // Check if manager exists and validate password
     if ($manager && hash('sha256', $password) === $manager['password']) {
@@ -30,4 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Sorry, login incorrect.";
     }
+
+    // Close statement and connection
+    $stmt->close();
+    $db->close();
 }

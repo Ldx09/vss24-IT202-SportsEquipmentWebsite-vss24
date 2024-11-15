@@ -21,4 +21,3 @@ if ($item) {
 } else {
     echo "<h2>Item $itemID not found</h2>\n";
 }
-?>
