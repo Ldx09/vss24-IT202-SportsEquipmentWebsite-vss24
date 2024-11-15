@@ -1,3 +1,10 @@
+# Nov 15 2024
+# IT202001
+#Sports Equipment Website
+#vss24@njit.edu
+
+
+
 <h2>Enter New Item Information</h2>
 <form name="newitem" action="addsportsequipmentproduct.inc.php" method="post">
    <table cellpadding="1" border="0">

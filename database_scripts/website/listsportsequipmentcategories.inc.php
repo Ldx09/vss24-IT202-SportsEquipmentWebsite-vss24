@@ -1,3 +1,10 @@
+# Nov 15 2024
+# IT202001
+#Sports Equipment Website
+#vss24@njit.edu
+
+
+
 <h2>List of Categories</h2>
 <form name="categories" method="post">
    <input type="text" name="search" placeholder="Search category">

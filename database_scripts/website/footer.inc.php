@@ -1,3 +1,10 @@
+# Nov 15 2024
+# IT202001
+#Sports Equipment Website
+#vss24@njit.edu
+
+
+
 <p>&copy Inventory Helper - Making Inventory Management Easier</p>
 <p>Vrajesh Shah, IT202001, Internet Applications, Sports Equipment Website, vss24@njit.edu.edu</p>
 <p>

@@ -1,3 +1,10 @@
+# Nov 15 2024
+# IT202001
+#Sports Equipment Website
+#vss24@njit.edu
+
+
+
 <?php
 error_log("\$_GET " . print_r($_GET, true));
 include("sportsequipmentcategory.php");  // Corrected include path to the correct file

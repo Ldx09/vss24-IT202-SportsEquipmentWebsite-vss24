@@ -1,3 +1,10 @@
+# Nov 15 2024
+# IT202001
+#Sports Equipment Website
+#vss24@njit.edu
+
+
+
 <h2>List of Products</h2>
 <form name="items" method="post" action="updatesportsequipmentproduct.inc.php">
    <input type="text" name="search" placeholder="Search item">
