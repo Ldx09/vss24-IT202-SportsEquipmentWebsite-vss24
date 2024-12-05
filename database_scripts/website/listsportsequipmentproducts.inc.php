@@ -1,3 +1,9 @@
+# Dec 5 2024
+# IT202001
+#Sports Equipment Website
+#vss24@njit.edu
+
+
 <h2>List of Products</h2>
 <script>
     function handleAction(action) {

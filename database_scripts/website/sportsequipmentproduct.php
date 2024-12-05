@@ -1,3 +1,9 @@
+# Dec 5 2024
+# IT202001
+#Sports Equipment Website
+#vss24@njit.edu
+
+
 <?php
 require_once('database.php'); // Ensure database.php contains the getDB() function to establish a connection to MySQL
 
