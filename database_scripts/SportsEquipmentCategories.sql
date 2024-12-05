@@ -28,3 +28,10 @@ VALUES
 
 -- Select all records to check data
 SELECT * FROM SportsEquipmentCategories;
+
+DELETE FROM SportsEquipmentCategories WHERE SportsCategoriesID;
+
+-- Verify deletion by selecting all records again
+SELECT * FROM SportsEquipmentCategories;
+
+
