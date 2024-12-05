@@ -1,36 +1,35 @@
-# Nov 15 2024
-# IT202001
-#Sports Equipment Website
-#vss24@njit.edu
-
-
 <?php
-// include("sportsequipmentcategory.php");  // Correct the file path to the actual file
+session_start();
+require_once 'sportsequipmentcategory.php';
 
-$categoryID = $_GET['categoryID'] ?? null;
+if (!isset($_SESSION['login'])) {
+    echo "<h2>Please log in first.</h2>";
+    exit();
+}
 
-// Ensure the category exists before attempting to update
-if ($categoryID) {
-    $category = Category::findCategory($categoryID);
+$categoryID = $_POST['categoryID'] ?? null;
+$categoryCode = $_POST['categoryCode'] ?? null;
+$categoryName = $_POST['categoryName'] ?? null;
+$categoryShelf = $_POST['categoryShelf'] ?? null;
 
-    if ($category) {
-        // Update the category fields from the URL parameters
-        $category->categoryCode = $_GET['categoryCode'] ?? $category->categoryCode;
-        $category->categoryName = $_GET['categoryName'] ?? $category->categoryName;
-        $category->categoryShelf = $_GET['categoryShelf'] ?? $category->categoryShelf;  // Ensure categoryShelf is updated
+if (!$categoryID || !is_numeric($categoryID)) {
+    echo "<h2>Invalid category ID provided.</h2>";
+    exit();
+}
 
-        // Attempt to update the category
-        $result = $category->updateCategory();
+$category = Category::findCategory($categoryID);
 
-        // Display the result of the update
-        if ($result) {
-            echo "<h2>Category $categoryID updated</h2>\n";
-        } else {
-            echo "<h2>Problem updating category $categoryID</h2>\n";
-        }
+if ($category) {
+    $category->categoryCode = $categoryCode;
+    $category->categoryName = $categoryName;
+    $category->categoryShelf = $categoryShelf;
+
+    if ($category->updateCategory()) {
+        echo "<h2>Category $categoryID updated successfully.</h2>";
     } else {
-        echo "<h2>Category not found with ID: $categoryID</h2>\n";
+        echo "<h2>Failed to update category $categoryID. Please try again.</h2>";
     }
 } else {
-    echo "<h2>Category ID is missing from the request</h2>\n";
+    echo "<h2>Category not found.</h2>";
 }
+?>

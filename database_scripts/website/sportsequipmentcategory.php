@@ -82,25 +82,28 @@ class Category
     }
 
     // Find a category by ID
-    static function findCategory($categoryID)
-    {
-        $db = getDB();  // Call getDB() to get the database connection
-
+    public static function findCategory($categoryID) {
+        $db = getDB();
+    
+        // Query to find the category
         $query = "SELECT * FROM SportsEquipmentCategories WHERE SportsCategoriesID = ?";
         $stmt = $db->prepare($query);
-
+    
         if (!$stmt) {
-            error_log("Prepare failed: (" . $db->errno . ") " . $db->error);
-            return null;  // Return null if preparation fails
+            // Log preparation errors
+            error_log("Error: Prepare failed for findCategory. " . $db->error);
+            return null;
         }
-
-        $stmt->bind_param("i", $categoryID);  // 'i' for integer
+    
+        // Bind and execute
+        $stmt->bind_param("i", $categoryID);
         $stmt->execute();
-        $result = $stmt->get_result();  // Get the result set from the prepared statement
-
-        if ($result && $row = $result->fetch_array(MYSQLI_ASSOC)) {
+        $result = $stmt->get_result();
+    
+        if ($result && $row = $result->fetch_assoc()) {
+            // Create and return the category object
             $category = new Category(
-                $row['SportsCategoriesID'],  // Use correct column name
+                $row['SportsCategoriesID'],
                 $row['SportsCategoriesCode'],
                 $row['SportsCategoriesName'],
                 $row['SportsCategoriesShelf']
@@ -109,14 +112,14 @@ class Category
             $db->close();
             return $category;
         } else {
-            error_log("Error fetching category: (" . $stmt->errno . ") " . $stmt->error);
+            // Log if category is not found
+            error_log("Error: Category with ID $categoryID not found.");
             $stmt->close();
             $db->close();
             return null;
         }
     }
-
-    // Update a category
+        // Update a category
     function updateCategory()
     {
         $db = getDB();  // Call getDB() to get the database connection
@@ -146,32 +149,29 @@ class Category
     // Remove a category
     public function removeCategory()
     {
-        $db = getDB();  // Get the database connection
-    
-        // Prepare the DELETE statement
+        $db = getDB();
         $query = "DELETE FROM SportsEquipmentCategories WHERE SportsCategoriesID = ?";
         $stmt = $db->prepare($query);
     
         if (!$stmt) {
-            // Log preparation errors
-            error_log("Prepare failed: (" . $db->errno . ") " . $db->error);
+            error_log("Error: Prepare failed for removeCategory. " . $db->error);
             return false;
         }
     
-        // Bind the category ID and execute the statement
-        $stmt->bind_param("i", $this->categoryID);  // 'i' for integer
-    
+        $stmt->bind_param("i", $this->categoryID);
         $result = $stmt->execute();
     
         if (!$result) {
-            // Log any execution errors
-            error_log("Error executing delete query: (" . $stmt->errno . ") " . $stmt->error);
+            error_log("Error: Execute failed for removeCategory. " . $stmt->error);
+        } elseif ($stmt->affected_rows === 0) {
+            error_log("Error: No rows deleted for category ID {$this->categoryID}.");
+            $stmt->close();
+            $db->close();
+            return false;
         }
     
-        // Close statement and database connection
         $stmt->close();
         $db->close();
-    
-        return $result;
+        return true;
     }
-} 
+}    

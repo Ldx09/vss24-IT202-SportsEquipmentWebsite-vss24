@@ -1,7 +1,7 @@
-# Nov 15 2024
-# IT202001
-#Sports Equipment Website
-#vss24@njit.edu
+// Nov 15 2024
+// IT202001
+// Sports Equipment Website
+// vss24@njit.edu
 
 
 

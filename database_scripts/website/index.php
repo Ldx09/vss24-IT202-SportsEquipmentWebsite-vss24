@@ -57,6 +57,8 @@ if (isset($_POST['submit'])) {
     <title>Login to the Sports Equipment Shop Inventory Website</title>
     <link rel="stylesheet" href="ih_style.css">
     <link rel="icon" type="image/png" href="images/logo.png">
+
+    
 </head>
 <body>
     <header><?php include("header.inc.php"); ?></header>
